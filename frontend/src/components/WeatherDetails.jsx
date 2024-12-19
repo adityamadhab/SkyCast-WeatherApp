@@ -1,10 +1,12 @@
 import { motion } from 'framer-motion';
 import WeatherCard from './WeatherCard';
 import SunriseSunset from './SunriseSunset';
+import HourlyForecast from './HourlyForecast';
 
 const WeatherDetails = ({ weatherData, unit, selectedDay, setSelectedDay, toggleUnit, convertTemp }) => {
     const forecast = weatherData.forecast.forecastday;
     const current = weatherData.current;
+    const hourlyData = forecast[0].hour;
 
     return (
         <div className="space-y-8 p-6">
@@ -58,6 +60,13 @@ const WeatherDetails = ({ weatherData, unit, selectedDay, setSelectedDay, toggle
                     ))}
                 </div>
             </div>
+
+            {/* Add Hourly Forecast */}
+            <HourlyForecast 
+                hourlyData={hourlyData}
+                unit={unit}
+                convertTemp={convertTemp}
+            />
 
             {/* Today's Highlights */}
             <div className="space-y-4">
